@@ -142,6 +142,75 @@ console.log(`dweytjrtfyuj/${category}`);
 
 /* 
 
++'4'            string to number 
+4 + '5'         concatination
+
+let incr = 10,
+    decr = 10;
+
+    incr++;      use old value, than change
+    --decr;      change old value, than use
+
+5 % 2            1
+
+2 * 8 == 16      true
+2 * 8 == '16'    true
+
+2 * 8 === 16     true
+2 * 8 === '16'   false
+
+2 * 3 != 16      true
+2 * 3 != '16'    true
+
+2 * 3 !== '6'    true
+2 * 3 !== 6      false
+
+let test1 = 10,
+    test2 = true;
+
+console.log(incr && decr);       10
+console.log(test1 && test2);     true
+
+test1 = true;
+console.log(test1 && test2);     true
+
+test2 = false;
+console.log(test1 && test2);     false
+
+test1 = false;
+console.log(test1 && test2);     false
+
+
+test1 = 10;
+test2 = true;
+
+console.log(incr || decr);       10
+console.log(test1 || test2);     true
+
+test1 = true;
+console.log(test1 || test2);     true
+
+test2 = false;
+console.log(test1 || test2);     true
+
+test1 = false;
+console.log(test1 || test2);     false
+
+
+let test3 = true;
+console.log( !test3 );             false
+
+let test3 = true;
+console.log( !test3 );             false
+
 */
 
+//lection 14 операторы js
+
+/*
+
+*/
+
+let kjdjspo = 4;
+console.log(kjdjspo);
 
