@@ -209,8 +209,6 @@ console.log( !test3 );             false
 
 /*
 
-*/
-
 if(4 == 9){
     console.log('ok');
 }else{
@@ -239,3 +237,30 @@ switch (num) {
         console.log('not this time? buddy)');
         break;
 }
+
+const   burger = 40,
+        fries  = 50,
+        cola   = 0;
+
+if( burger >= 5 && fri >= 4 && cola){
+    console.log('I need a cola)');
+}
+
+
+false       0   ''  null    undefined   NaN
+
+
+&&          stops on a first false, and returns last true state/meaning (if typeof(variable) != boolean) 
+
+||          stops on a first true, and returns last false state/meaning (if typeof(variable) != boolean) 
+
+
+*/
+
+//lection 22 циклы
+
+/*
+
+
+*/
+
