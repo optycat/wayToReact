@@ -205,12 +205,37 @@ console.log( !test3 );             false
 
 */
 
-//lection 14 операторы js
+//lection 20 условия
 
 /*
 
 */
 
-let kjdjspo = 4;
-console.log(kjdjspo);
+if(4 == 9){
+    console.log('ok');
+}else{
+    console.log('error!');
+}
 
+let num = 50;
+
+if(num == 9){
+    console.log('error');
+}else if(num){
+    console.log('ok!');
+}
+
+(num === 50) ? console.log('error') : console.log('ok!');
+
+switch (num) {
+    case 49: 
+        console.log('not enoth');
+        break;
+    case 50: 
+        console.log('right here!');
+    case 100: 
+        console.log('to much');
+    default:
+        console.log('not this time? buddy)');
+        break;
+}
