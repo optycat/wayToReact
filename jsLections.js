@@ -262,5 +262,130 @@ false       0   ''  null    undefined   NaN
 /*
 
 
+let num = 50;
+
+while (num <= 55) {
+    console.log(num);
+    num ++;
+}
+
+num = 50;
+do {
+    console.log(num);
+    num ++;
+}
+while (num < 55);
+
+for ( let i = 0; i >= 10; i++) {
+    if (i === 6) {
+        i++;
+        continue;
+        break;
+    }
+
+    console.log(i);
+}
+
+
+let tmp = '';
+
+for ( let i = 1; i < 6; i++ ) {
+    let str = '*';
+    
+    for ( let j = 0; j < i; j++ ) {
+        tmp += str;
+
+    }
+    console.log(tmp);
+    tmp = '';
+}
+
+
+start: for ( let i = 1; i < 6; i++ ) {
+    let str = '*';
+    
+    for ( let j = 0; j < i; j++ ) {
+        tmp += str;
+        for ( let k = 0; k < j; k++ ) {
+            if ( k === 2 ) continue start;
+            
+            console.log(k);
+
+    
+        }
+    }
+    console.log(tmp);
+    tmp = '';
+}
+
+
 */
 
+//lection 25 функции
+
+/*
+
+
+let someText = 'message',
+    num = 20;
+
+function showMassage(massage) {
+    console.log(massage);
+    let num = 10;
+    console.log(num);
+}
+
+showMassage(someText);
+
+console.log(num);
+
+function calc(a, b) {
+    return a + b;
+}
+
+console.log(calc(3, 5));
+
+const logger = function() {
+    console.log('U logged!')
+};
+
+logger();
+
+const calc = (a, b) => {
+    return a + b;
+};
+
+
+*/
+
+const usdCurs = 31.52,
+      eurCurs = 33.1,
+      discont = 0.8472;
+
+function convert(amount, curr){
+    return amount * curr;
+}
+
+function promotion(curs) {
+    console.log(curr * discont);
+}
+
+convert(500, usdCurs);
+
+promotion(convert(500, usdCurs));
+
+const res = convert(500, eurCurs);
+promotion(res);
+
+function test() {
+    for(let i = 0; i < 5; i++){
+        console.log(i);
+        if (i === 3) return
+    }
+    console.log('done!');
+}
+
+test();
+
+function doNothitg(){};
+console.log(doNothitg());
