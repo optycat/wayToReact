@@ -8,7 +8,7 @@ let personalMovieDB = {
     movies: {},
     actors: {},
     genres: [],
-    private: true
+    private: false
 };
 
 
@@ -64,7 +64,7 @@ function detectPersonalLvl() {
 }
 
 const showMyDB = (acsesToDB) => {
-    if(acsesToDB == true) {
+    if(acsesToDB == false) {
         console.log(personalMovieDB);
     }
 };
