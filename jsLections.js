@@ -413,3 +413,6 @@ parseFloat()                            parses itneger to float
 
 
 */
+
+//lection 25 методы строк и чисел
+
