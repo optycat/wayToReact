@@ -356,8 +356,6 @@ const calc = (a, b) => {
 };
 
 
-*/
-
 const usdCurs = 31.52,
       eurCurs = 33.1,
       discont = 0.8472;
@@ -389,3 +387,29 @@ test();
 
 function doNothitg(){};
 console.log(doNothitg());
+
+
+*/
+
+//lection 25 методы строк и чисел
+
+/*
+
+
+string                                  can get acses to symbol using []
+length                                  how many elements in array or symbols in string
+toUpperCase/toLowerCase                 changes the register of string withot changing base string
+inexOf(something)                       returns index of something if string contais something, else returns -1
+slise(startIndex, endIndex)             returns a part of string from startIndex(with it) to endIndex(without it)
+                                        if u set just startIndex, method returns a part of string from startIndex to end of a string
+                                        if startIndex/endIndex is negative it will work too
+substring(startIndex, endIndex)         returns a part of string from startIndex to endIndex
+substr(startIndex, amountOfSymbols)     returns a part of string from startIndex to startIndex + amoutnOfSymbols
+
+number
+Math.____()                             all math with a number
+parseInt()                              parses some string to number or number to enothe dimention (from decimal to hex for example)
+parseFloat()                            parses itneger to float
+
+
+*/
