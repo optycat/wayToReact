@@ -415,5 +415,78 @@ parseFloat()                            parses itneger to float
 
 */
 
-//lection 25 методы строк и чисел
+//lection 31 callback
 
+/*
+
+
+function first() {
+    //do something
+    setTimeout(function() {
+        console.log(1);
+    }, 500);
+}
+function second() {
+    console.log(2);
+}
+
+first();
+second();
+
+function learnJS(lang, callback) {
+    console.log(`i learn ${lang}`);
+    callback();
+}
+
+function done() {
+    console.log('lesson is over');
+}
+
+learnJS('JavaScript', done);
+
+
+*/
+
+//lection 32 деструктуризация объектов
+
+/*
+
+const obj = new Object();
+
+const options = {
+    name: 'test',
+    width: 1024,
+    height: 1024,
+    colors: {
+        border: '#333',
+        bg: '#fff'
+    },
+    makeTest: function() {
+        console.log('test');
+    }
+};
+
+options.makeTest();
+
+const {border, bg} = options.colors;
+console.log(border);
+
+console.log(Object.keys(options).length);
+
+delete options.name;
+
+let counter = 0;
+for (let key in options) {
+    if(typeof(options[key]) === 'object'){
+        for (let i in options[key]) {
+            console.log(`prop: ${i} contains ${options[key][i]}`);
+            counter++;
+        }
+    } else {
+        console.log(`prop: ${key} contains ${options[key]}`);
+        counter++;
+    }
+}
+
+
+*/
