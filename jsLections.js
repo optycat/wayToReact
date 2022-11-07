@@ -405,6 +405,7 @@ slise(startIndex, endIndex)             returns a part of string from startIndex
                                         if startIndex/endIndex is negative it will work too
 substring(startIndex, endIndex)         returns a part of string from startIndex to endIndex
 substr(startIndex, amountOfSymbols)     returns a part of string from startIndex to startIndex + amoutnOfSymbols
+trim                                    removes all spaces from start and end of the string
 
 number
 Math.____()                             all math with a number
