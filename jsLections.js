@@ -490,3 +490,36 @@ for (let key in options) {
 
 
 */
+
+//lection 33 массивы и псевдомассивы
+
+/*
+
+
+const arr = [1, 2, 3, 4, 8];
+
+arr.pop();                                              delete last element from arr
+arr.push(10);                                           add 10 to the end of arr
+arr.length;                                             last index of arr +1
+
+const str = 'some string';
+const prod = str.split(' ');                            turns string to array
+prod.join(' ');                                         turns array to string
+
+arr.sort(compareNum);                                   sorts arr from smallest item to biggest
+
+function compareNum(a, b){
+    return a - b;
+}
+
+
+for (let value of arr) {                                can use break and continue
+
+}
+
+arr.forEach( (itemOfArr, indexOfItem, arr) => {
+
+});
+
+
+*/
