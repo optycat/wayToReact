@@ -619,3 +619,35 @@ const nardlwfeaObj = {...q};
 
 */
 
+// lection 36 ООП
+
+/*
+
+
+const solider = {
+    health: 400,
+    armour: 100,
+    sayHello: function() {
+        console.log('hello');
+    }
+};
+
+const franf = Object.create(solider);
+
+const sam = {
+    health: 100
+};
+
+sam.__proto__ = solider;
+Object.setPrototypeOf(sam, solider);
+
+console.log(sam.armour);
+
+sam.sayHello();
+
+
+*/
+
+
+// lection 
+
