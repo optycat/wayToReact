@@ -153,4 +153,84 @@ function fib(amount) {
 }
 
 console.log(fib(undefined));
+
+
+const personalPlanPeter = {
+    name: "Peter",
+    age: "29",
+    skills: {
+        languages: ['ru', 'eng'],
+        programmingLangs: {
+            js: '20%',
+            php: '10%'
+        },
+        exp: '1 month'
+    },
+    showAgeAndLangs: (object) => {
+        let responce = '';
+        if(object.age) {
+            responce += `My age is ${object.age} and `;
+        } else {
+            responce += `My age is empty and `;
+        }
+        if(object.skills.languages) {
+            responce += 'my languages are ';
+            for( let key in object.skills.languages) {
+                responce += `${object.skills.languages[key]} `.toUpperCase();
+            }
+        } else {
+            responce += `my languages are empty too`;
+        }
+        return responce;
+    }
+};
+
+console.log(personalPlanPeter.showAgeAndLangs(personalPlanPeter));
+
+//const {skills} = personalPlanPeter;
+
+//console.log(skills);
+
+function showExperience(plan) {
+    //let someArr = [];
+    //for(let item in plan) {
+    //    if(typeof(plan[item]) === 'object') {
+    //        for(let i in plan[item]) {
+    //            if(typeof(plan[item][i]) !== 'object') {
+    //                someArr.push({i} = plan[item][i]);
+    //            }
+    //        }
+    //    }
+    //}
+    return plan.skills.exp;
+}
+
+console.log(showExperience(personalPlanPeter));
+
+function showProgrammingLangs(plan) {
+    let responce = '';
+    for( let key in plan.skills.programmingLangs) {
+        responce += `Language ${key} progress ${plan.skills.programmingLangs[key]} `;
+    }
+    return responce;
+}
+
+console.log(showProgrammingLangs(personalPlanPeter));
+
+
 */
+
+const someString = 'This is some strange string';
+
+function reverse(str) {
+    return str.split('').reverse().join('');
+}
+console.log(reverse(someString));
+
+const baseCurrencies = ['USD', 'EUR'];
+const additionalCurrencies = ['UAH', 'RUB', 'CNY'];
+
+function availableCurr(arr, missingCurr) {
+
+}
+
