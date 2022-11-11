@@ -1,9 +1,14 @@
 "use strict";
 
-
 let personalMovieDB = {
     count: 0,
-    movies: {},
+    movies: [
+        "Логан",
+        "Лига справедливости",
+        "Ла-ла лэнд",
+        "Одержимость",
+        "Скотт Пилигрим против..."
+    ],
     actors: {},
     genres: [],
     private: false,
@@ -35,13 +40,13 @@ let personalMovieDB = {
     rememberFilm: () => {
         for ( let i = 0; i < 2; i++) {
     
-            let lastWathedFilm      = prompt("Name one of the last wathced films", ""),
-                lastWatchedFilmMark = +prompt("How it looks on scale 1 to 10?", "");
+            let lastWathedFilm      = prompt("Name one of the last wathced films", "");
+                //lastWatchedFilmMark = +prompt("How it looks on scale 1 to 10?", "");
         
-            if( !lastWathedFilm || lastWathedFilm.length > 49 ){
+            if( !lastWathedFilm || lastWathedFilm.length > 49 ) {
                 i--;
             } else {
-                personalMovieDB['movies'][lastWathedFilm] = lastWatchedFilmMark;
+                personalMovieDB['movies'].push(lastWathedFilm);// = lastWatchedFilmMark;
         
                 lastWathedFilm      = '';
                 lastWatchedFilmMark = 0;
@@ -70,11 +75,24 @@ let personalMovieDB = {
 
 };
 
+document.querySelector('.promo__adv-title').remove();
+document.querySelectorAll('.promo__adv > img').forEach( item => item.remove() );
+
+const bgMainBlock = document.querySelector('.promo__bg'),
+      movieList   = document.querySelectorAll('.promo__interactive-item');
+
+bgMainBlock.querySelector('.promo__genre').textContent = 'ДРАММА';
+bgMainBlock.style = 'background: url(../img/bg.jpg) center center/cover no-repeat; background-position: top;';
 
 
+personalMovieDB.movies.sort();
+
+movieList.forEach( (item, index) => {
+    item.textContent = `${index + 1}: ${personalMovieDB.movies[index]}`;
+});
 
 
-
+/*
 personalMovieDB.start();
 
 personalMovieDB.rememberFilm();
@@ -84,7 +102,7 @@ personalMovieDB.toggleVisibleMyDb();
 personalMovieDB.toggleVisibleMyDb();
 
 personalMovieDB.showMyDB();
-
+*/
 
 
 // some shablones
