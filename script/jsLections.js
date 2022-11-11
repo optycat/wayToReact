@@ -648,6 +648,124 @@ sam.sayHello();
 
 */
 
+// lection 39 динамическая типизация
 
-// lection 
+/*
+
+
+// to string
+
+console.log(typeof(String(null)));
+
+console.log(typeof(String(4)));
+
+console.log(typeof(5 + ''));
+
+
+// to number
+
+console.log(typeof(Number(null)));
+
+console.log(typeof(+'5'));
+
+console.log(typeof(parseInt('15px', 10)));
+
+console.log(typeof(+'4'));
+
+
+// to bool
+
+false               0, '', null, undefined, NaN
+
+let switcher = null;
+
+if(switcher) {
+    console.log('Working...');
+}
+
+switcher = 1;
+
+if(switcher) {
+    console.log('Working...');
+}
+
+
+console.log(typeof(Boolean('4')));
+
+console.log(typeof(!!'sdghsd'));
+
+
+*/
+
+// lection 40 замыкание
+
+/* 
+
+function createCounter() {
+    let counter = 0;
+    
+    const myFunc = function() {
+        counter = counter + 1;
+        return counter;
+    };
+
+    return myFunc;
+}
+
+const increment = createCounter();
+
+const   c1 = increment(),
+        c2 = increment(),
+        c3 = increment();
+
+console.log(c1, c2, c3);
+
+
+
+//  const result = getSum(5, 6);
+//  function getSum(a, b) {
+//      return a + b;
+//  }
+//  
+//  let arr = [function(){console.log(1)}, '1'];
+//  console.log(0 || NaN || false || null)
+
+
+function foo(a,b) {
+    const [1] = a;
+    const {eng} = b;
+ 
+    return `${1} ${eng}`;
+}
+ 
+const result = foo(['Hello', 'Привет'], {ru: 'Мир', eng: 'World'})
+console.log(result)
+
+
+*/
+
+// lection 41 задачи с собеседования
+
+/* 
+
+[]      в простых математических операциях приводиться к строке
+
+             'false'  NaN    NaN
+console.log([] + false - null + true);
+
+console.log([] + 1 + 2);
+
+console.log(2 && 1 && null && 0 && undefined);
+
+            3   3    3
+alert(null || 2 && 3 || 4);
+
+console.log(0 || "" || 2 || undefined || true || falsе );
+
+*/
+
+// lection 42 получение елементов со страницы
+
+/* */
+
 

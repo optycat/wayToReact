@@ -1,6 +1,6 @@
 "use strict";
 
-/*
+
 let personalMovieDB = {
     count: 0,
     movies: {},
@@ -299,29 +299,42 @@ function isBudgetEnough(data) {
 console.log(isBudgetEnough(shoppingMallData));
 
 
-*/
+const students = ['Peter', 'Andrew', 'Ann', 'Mark', 'Josh', 'Sandra', 'Cris', 'Bernard', 'Takeshi', 'Sam'];
 
+function sortStudentsByGroups(arr) {
 
-const students = ['Peter', 'Andrew', 'Ann', 'Mark', 'Josh', 'Sandra', 'Cris', 'Bernard', 'Bernard', 'Sam', 'Sam'];
+    let result = [];
+    arr.sort();
 
-let i = 0;
-    students.sort();
-
-function sortStudentsByGroups(arr, i, newArr = []) {
-
-    if(newArr.length === 3) {
-        let str = '';
-        if (arr.length === 9) {
-            str = `Оставшиеся студенты: -`;
-        } else {
-            arr = arr.slice(9);
-            str = `Оставшиеся студенты: ${arr.join(", ")}`;
-        }
-        newArr.push(str);
-        return newArr;
-    } else {
-        newArr.push([arr[i], arr[i + 1], arr[i + 2]]);
-        return sortStudentsByGroups(arr, i + 3, newArr);
+    for(let i = 0; i < 9; i += 3) {
+        result.push(arr.slice(i, i + 3));
     }
+    arr.length > 9 ? result.push(`Оставшиеся студенты: ${arr.slice(9).join(", ")}`) : result.push('Оставшиеся студенты: -');
+
+    return result;
+    
+    //let i = 0;
+    //students.sort();
+    //function sortStudentsByGroups(arr, i, newArr = []){
+    //    if(newArr.length === 3) {
+    //        let str = '';
+    //        if (arr.length === 9) {
+    //            str = `Оставшиеся студенты: -`;
+    //        } else {
+    //            arr = arr.slice(9);
+    //            str = `Оставшиеся студенты: ${arr.join(", ")}`;
+    //        }
+    //        newArr.push(str);
+    //        return newArr;
+    //    } else {
+    //        newArr.push([arr[i], arr[i + 1], arr[i + 2]]);
+    //        return sortStudentsByGroups(arr, i + 3, newArr);
+    //    }
+    //}
+    //return ass(arr, i);
+    
 }
-console.log(sortStudentsByGroups(students, i));
+console.log(sortStudentsByGroups(students));
+
+
+*/
