@@ -79,16 +79,20 @@ document.querySelector('.promo__adv-title').remove();
 document.querySelectorAll('.promo__adv > img').forEach( item => item.remove() );
 
 const bgMainBlock = document.querySelector('.promo__bg'),
-      movieList   = document.querySelectorAll('.promo__interactive-item');
+      movieList   = document.querySelector('.promo__interactive-list');
 
 bgMainBlock.querySelector('.promo__genre').textContent = 'ДРАММА';
-bgMainBlock.style = 'background: url(../img/bg.jpg) center center/cover no-repeat; background-position: top;';
+bgMainBlock.style.backgroundImage = 'url(img/bg.jpg)';
 
+movieList.querySelectorAll('li').forEach( item => item.remove());
 
 personalMovieDB.movies.sort();
 
-movieList.forEach( (item, index) => {
-    item.textContent = `${index + 1}: ${personalMovieDB.movies[index]}`;
+personalMovieDB.movies.forEach( (item, index) => {
+    movieList.insertAdjacentHTML('beforeend', `
+        <li class='promo__interactive-item'>${index + 1}: ${item}
+            <div class='delete'></div>
+        </li>`);
 });
 
 
