@@ -1,5 +1,22 @@
 "use strict";
 
+/* Задания на урок:
+
+*   1) Реализовать функционал, что после заполнения формы и нажатия кнопки "Подтвердить" - 
+    новый фильм добавляется в список. Страница не должна перезагружаться.
+    Новый фильм должен добавляться в movieDB.movies.
+    Для получения доступа к значению input - обращаемся к нему как input.value;
+    P.S. Здесь есть несколько вариантов решения задачи, принимается любой, но рабочий.
+
+*   2) Если название фильма больше, чем 21 символ - обрезать его и добавить три точки
+
+    3) При клике на мусорную корзину - элемент будет удаляться из списка (сложно)
+
+*   4) Если в форме стоит галочка "Сделать любимым" - в консоль вывести сообщение: 
+    "Добавляем любимый фильм"
+
+*   5) Фильмы должны быть отсортированы по алфавиту */
+
 let personalMovieDB = {
     count: 0,
     movies: [
@@ -12,10 +29,19 @@ let personalMovieDB = {
     actors: {},
     genres: [],
     private: false,
-    start: () => {
-        while (personalMovieDB.count == '' || personalMovieDB.count == null || isNaN(personalMovieDB.count)) {
+    resetMoviesOnPage: () => {
+        /*while (personalMovieDB.count == '' || personalMovieDB.count == null || isNaN(personalMovieDB.count)) {
             personalMovieDB.count = +prompt("How many films have you watched?", "");
-        }
+        }*/
+        movieList.querySelectorAll('li').forEach( item => item.remove());
+        personalMovieDB.movies.sort();
+        personalMovieDB.movies.forEach( (item, index) => {
+        movieList.insertAdjacentHTML('beforeend', `
+            <li class='promo__interactive-item'>${index + 1}: ${item}
+                <div class='delete'></div>
+            </li>`);
+        movieList.querySelectorAll('.delete').forEach(item => item.addEventListener('click', deleteYourMovie));
+    });
     },
     writeYourGenre: () => {
         let tmpGenreCount = 0;
@@ -78,22 +104,55 @@ let personalMovieDB = {
 document.querySelector('.promo__adv-title').remove();
 document.querySelectorAll('.promo__adv > img').forEach( item => item.remove() );
 
-const bgMainBlock = document.querySelector('.promo__bg'),
-      movieList   = document.querySelector('.promo__interactive-list');
+const bgMainBlock  = document.querySelector('.promo__bg'),
+      movieList    = document.querySelector('.promo__interactive-list'),
+      form         = document.querySelector('.add'),
+      buttonSubmit = form.querySelector('button'),
+      inputName    = form.querySelectorAll('input');
 
 bgMainBlock.querySelector('.promo__genre').textContent = 'ДРАММА';
 bgMainBlock.style.backgroundImage = 'url(img/bg.jpg)';
 
-movieList.querySelectorAll('li').forEach( item => item.remove());
+const isInputChecked = () => {
+    if (inputName[1].checked) {
+        console.log("Добавляем любимый фильм");
+        inputName[1].checked = false;
+    }
+};
 
-personalMovieDB.movies.sort();
+const addMovie = (event) => {
+    event.preventDefault();
+    if (!inputName[0].value) {
+        console.log('Error!')
+    } else if (inputName[0].value.length > 21) {
+        personalMovieDB.movies.push(`${inputName[0].value.substring(0, 21)}...`);
+        inputName[0].value = '';
+        isInputChecked();
+    } else {
+        personalMovieDB.movies.push(inputName[0].value);
+        inputName[0].value = '';
+        isInputChecked();
+    }
+    personalMovieDB.resetMoviesOnPage();
+};
 
-personalMovieDB.movies.forEach( (item, index) => {
-    movieList.insertAdjacentHTML('beforeend', `
-        <li class='promo__interactive-item'>${index + 1}: ${item}
-            <div class='delete'></div>
-        </li>`);
-});
+const deleteYourMovie = (event) => {
+    let tmp = event.target.parentElement.textContent.slice(3).trim(),
+        j   = 0;
+    for (let i = 0; i < personalMovieDB.movies.length; i++) {
+        if (personalMovieDB.movies[i] === tmp) {
+            continue;
+        }
+        personalMovieDB.movies[j] = personalMovieDB.movies[i];
+        j++;
+    }
+    personalMovieDB.movies.pop();
+    personalMovieDB.resetMoviesOnPage();
+};
+
+
+buttonSubmit.addEventListener('click', addMovie);
+personalMovieDB.resetMoviesOnPage();
 
 
 /*
@@ -106,257 +165,4 @@ personalMovieDB.toggleVisibleMyDb();
 personalMovieDB.toggleVisibleMyDb();
 
 personalMovieDB.showMyDB();
-*/
-
-
-// some shablones
-
-/*
-
-
-function getCoupe(place) {
-    let result;
-    if(!place || typeof(place) != 'number' || place <= 0 || place > 36 || place % 1 != 0) {
-        result = 'error!';
-    } else {
-        let counter = 1;
-        while( place >= 4) {
-            place = place - 4;
-            counter++;
-        }
-        result = 'done: ' + counter;
-    }
-
-    return result;
-}
-
-console.log(getCoupe(33));
-
-const transformNumberToDate = function(numberToTransform) {
-    const howersStr = ['час', 'часа', 'часов'];
-    let result = '';
-    if(!numberToTransform || typeof(numberToTransform) != 'number' || numberToTransform < 0 || numberToTransform % 1 != 0) {
-        console.log('error!');
-    } else {
-        let howers = 0;
-        while(numberToTransform >= 60) {
-            numberToTransform = numberToTransform - 60;
-            howers++;
-        }
-        result += howers;
-        if(howers % 10 < 2) {
-            result += howersStr[0];
-        } else if (howers % 10 < 5) {
-            result += howersStr[1];
-        } else {
-            result += howersStr[2];
-        }
-        result += ` ${numberToTransform} минут`;
-    }
-    return result;
-};
-
-console.log(transformNumberToDate(2656));
-
-const defineBiggest = function (a, b, c, d){
-    let result;
-    if(!a || typeof(a) != 'number' || !b || typeof(b) != 'number' || !c || typeof(c) != 'number' || !d || typeof(d) != 'number'){
-        result = 0;
-    } else {
-        result = (a > b ? a : b) > (c > d ? c : d) ? (a > b ? a : b) : (c > d ? c : d);
-    }
-    return result;
-};
-
-console.log(defineBiggest(1, 2, -3.5, -500));
-
-function fib(amount) {
-    let result = '',
-        resultArr = [0, 1];
-    if(typeof(amount) != 'number' || amount % 1 != 0 || amount < 0){
-        result = 'error!';
-    } else {
-        for(let i = 0; i < amount; i++) {
-            resultArr[i + 2] = resultArr[i] + resultArr[i + 1];
-            result += ` ${resultArr[i]}`;
-        }
-    }
-    return result.trim();
-}
-
-console.log(fib(undefined));
-
-
-const personalPlanPeter = {
-    name: "Peter",
-    age: "29",
-    skills: {
-        languages: ['ru', 'eng'],
-        programmingLangs: {
-            js: '20%',
-            php: '10%'
-        },
-        exp: '1 month'
-    },
-    showAgeAndLangs: (object) => {
-        let responce = '';
-        if(object.age) {
-            responce += `My age is ${object.age} and `;
-        } else {
-            responce += `My age is empty and `;
-        }
-        if(object.skills.languages) {
-            responce += 'my languages are ';
-            for( let key in object.skills.languages) {
-                responce += `${object.skills.languages[key]} `.toUpperCase();
-            }
-        } else {
-            responce += `my languages are empty too`;
-        }
-        return responce;
-    }
-};
-
-console.log(personalPlanPeter.showAgeAndLangs(personalPlanPeter));
-
-//const {skills} = personalPlanPeter;
-
-//console.log(skills);
-
-function showExperience(plan) {
-    //let someArr = [];
-    //for(let item in plan) {
-    //    if(typeof(plan[item]) === 'object') {
-    //        for(let i in plan[item]) {
-    //            if(typeof(plan[item][i]) !== 'object') {
-    //                someArr.push({i} = plan[item][i]);
-    //            }
-    //        }
-    //    }
-    //}
-    return plan.skills.exp;
-}
-
-console.log(showExperience(personalPlanPeter));
-
-function showProgrammingLangs(plan) {
-    let responce = '';
-    for( let key in plan.skills.programmingLangs) {
-        responce += `Language ${key} progress ${plan.skills.programmingLangs[key]} `;
-    }
-    return responce;
-}
-
-console.log(showProgrammingLangs(personalPlanPeter));
-
-
-const someString = 'This is some strange string';
-
-function reverse(str) {
-    return str.split('').reverse().join('');
-}
-console.log(reverse(someString));
-
-const baseCurrencies = ['USD', 'EUR'];
-const additionalCurrencies = ['UAH', 'RUB', 'CNY'];
-
-function availableCurr(arr, arr1, missingCurr) {
-    let result = 'Доступные валюты:\n';
-    if(!arr || !arr1) {
-        result = 'Нет доступных валют';
-    }
-    const arrayCurr = [...arr, ...arr1];
-    
-    for (let i = 0; i < arrayCurr.length; i++) {
-        result += `${arrayCurr[i]}\n`;
-        if(missingCurr) {
-            continue;
-        }
-    }
-
-    return result;
-}
-
-console.log();
-
-
-const shoppingMallData = {
-    shops: [
-        {
-            width: 10,
-            length: 5
-        },
-        {
-            width: 15,
-            length: 7
-        },
-        {
-            width: 20,
-            length: 5
-        },
-        {
-            width: 8,
-            length: 10
-        }
-    ],
-    height: 5,
-    moneyPer1m3: 30,
-    budget: 50000
-};
-
-function isBudgetEnough(data) {
-    let value = 0,
-        result = '';
-    data.shops.forEach( (item) => {
-        const {width, length} = item;
-        value += width * length;
-    });
-    const prisePerM3 = value * data.height * data.moneyPer1m3;
-    if(data.budget >= prisePerM3) {
-        result += 'Бюджета достаточно';
-    } else result += 'Бюджета недостаточно';
-    return result;
-}
-
-console.log(isBudgetEnough(shoppingMallData));
-
-
-const students = ['Peter', 'Andrew', 'Ann', 'Mark', 'Josh', 'Sandra', 'Cris', 'Bernard', 'Takeshi', 'Sam'];
-
-function sortStudentsByGroups(arr) {
-
-    let result = [];
-    arr.sort();
-
-    for(let i = 0; i < 9; i += 3) {
-        result.push(arr.slice(i, i + 3));
-    }
-    arr.length > 9 ? result.push(`Оставшиеся студенты: ${arr.slice(9).join(", ")}`) : result.push('Оставшиеся студенты: -');
-
-    return result;
-    
-    //let i = 0;
-    //students.sort();
-    //function sortStudentsByGroups(arr, i, newArr = []){
-    //    if(newArr.length === 3) {
-    //        let str = '';
-    //        if (arr.length === 9) {
-    //            str = `Оставшиеся студенты: -`;
-    //        } else {
-    //            arr = arr.slice(9);
-    //            str = `Оставшиеся студенты: ${arr.join(", ")}`;
-    //        }
-    //        newArr.push(str);
-    //        return newArr;
-    //    } else {
-    //        newArr.push([arr[i], arr[i + 1], arr[i + 2]]);
-    //        return sortStudentsByGroups(arr, i + 3, newArr);
-    //    }
-    //}
-    //return ass(arr, i);
-    
-}
-console.log(sortStudentsByGroups(students));
-
-
 */
