@@ -846,3 +846,195 @@ div.insertAdjacentHTML('afterbegin', '<h2>height</h2>');
 
 */
 
+// lection 45 события и их обработчики
+
+/*
+
+//<button onclick="alert('CLICK!')"></button>
+
+const btn = document.querySelector('button'),
+      ovellay = document.querySelector('.overlay');
+
+btn.onclick = () => {   // can use only once, and cant be deleted
+    alert('CLICK!');
+};
+
+const deleteElement = (event) => {
+    let i = 0;
+    i++;
+    console.log(event.target);
+    console.log(event.currentTarget);
+    console.log(event.type);
+    //if(i == 1) {
+    //    event.target.remove();
+    //}
+    //alert('click!');
+};
+
+btn.addEventListener('click', deleteElement);   //can deal with multiple actions on one element
+btn.removeEventListener('click', deleteElement);
+ovellay.addEventListener('click', deleteElement);
+
+const link = document.querySelector('a');
+
+link.addEventListener('click', (event) => {
+    event.preventDefault();
+    console.log(event.target);
+});
+
+const btns = querySelectorAll('button');
+
+btns.forEach (item => {
+    item.addEventListener('click', deleteElement, {once: true});
+});
+
+*/
+
+// lection 46 навигация по DOM, преймущества for of
+
+/*
+
+console.log(document.body);
+console.log(document.head);
+console.log(document.documentElement);
+
+console.log(document.body.childNodes);
+
+document.body.firstChild;
+document.body.lastChild;
+
+document.querySelector('#current').parentNode.parentNode;
+
+document.querySelector('[data-current = "3"]').nextSibling.previousSibling;
+document.querySelector('[data-current = "3"]').nextElementSibling.previousElementSibling;
+document.querySelector('[data-current = "3"]').parentElement;
+document.querySelector('[data-current = "3"]').firstElementChild;
+
+for (let node of document.body.childNodes) {
+    if (node.nodeName == '#text') {
+        continue;
+    }
+    console.log(node);
+}
+
+*/
+
+// lection 47 рекурсия
+
+/*
+
+function pow(x, n) {
+    if (n === 1) {
+        return x;
+    } else {
+        return x * pow(x, n - 1);
+    }
+}
+
+pow(2, 1);  //2
+pow(2, 2);  //4
+pow(2, 3);  //8
+pow(2, 4);  //16
+
+let students = {
+    js: [{
+        name: 'John',
+        progress: 100
+    }, {
+        name: 'Ivan',
+        progress: 68
+    }],
+    html: {
+        basics: [{
+            name: 'Peter',
+            progress: 20
+        }, {
+            name: 'Ann',
+            progress: 15
+        }],
+        pro: [{
+            name: 'Sam',
+            progress: 10
+        }],
+        semi: {
+            students: [{
+                name: 'test',
+                progress: 100
+            }]
+        }
+    }
+};
+
+function getTotalProgressIteration(data) {
+    let total = 0,
+        students = 0;
+
+    for (let item of Object.values(data)) {
+        if (Array.isArray(item)) {
+            students += item.length;
+            for (let i = 0; i < item.length; i++) {
+                total += item[i].progress;
+            }
+        } else {
+            for (let subItem of Object.values(item)) {
+                students += subItem.length;
+
+                for (let i = 0; i < subItem.length; i++) {
+                    total += subItem[i].progress;
+                }
+            }
+        }
+    }
+
+    return total / students;
+}
+
+//console.log(getTotalProgressIteration(students));
+
+
+function getTotalProgressRecursion(data) {
+    if (Array.isArray(data)) {
+        let total = 0;
+
+        for (let i = 0; i < data.length; i++) {
+            total += data[i].progress;
+        }
+
+        return [total, data.length];
+    } else {
+        let total = [0, 0];
+
+        for (let subData of Object.values(data)) {
+            const subDataArr = getTotalProgressRecursion(subData);
+            total[0] += subDataArr[0];
+            total[1] += subDataArr[1];
+        }
+        return total;
+    }
+}
+
+const result = getTotalProgressRecursion(students);
+console.log(result[0] / result[1]);
+
+
+function factorial(n) {
+    if (typeof(n) != 'number' || n % 1 !== 0) {
+        return 'Error!';
+    } else {
+        if (n === 1) {
+            return n;
+        } else if (n <= 0) {
+            return 1;  
+        } else {
+            return n * factorial(n - 1);
+        }
+    }
+}
+
+console.log(factorial(0));
+
+*/
+
+// lection 47 рекурсия
+
+/* */
