@@ -1035,11 +1035,33 @@ console.log(factorial(0));
 
 */
 
-// lection 47 рекурсия
+// lection 49 события на мобилке
 
-/* */
+/*
+
+touchstart
+touchmove
+touchend
+touchenter
+touchleave
+touchcansel
+
+event.touches
+event.targetTouches
+event.changedTouches
+
+window.addEventListener('DOMContentLoaded', () => {
+    const box = document.querySelector('.box');
+
+    box.addEventListener('touchstart', event => {
+        event.preventDefault();
+        console.log('start');
+    });
 
 
+});
+
+*/
 
 // some shablones
 
@@ -1290,3 +1312,43 @@ function sortStudentsByGroups(arr) {
 console.log(sortStudentsByGroups(students));
 
 */
+
+// lection 50 classList и делигирование событий
+
+/* */
+
+const btns          = document.querySelectorAll('button'),
+      btnsParrent   = document.querySelector('.button-wrapper');
+
+btns[0].classList.length;
+btns[1].classList.item(0);
+btns[2].classList.add('red', 'awfsffff');
+btns[2].classList.remove('red');
+btns[1].classList.toggle('blue');
+
+if (btns[2].classList.contains('red')) {
+    console.log('Smth happend');
+}
+
+btns[0].addEventListener('click', () => {
+    if (!btns[1].classList.contains('red')) {
+        btns[2].classList.add('red', 'awfsffff');
+    } else {
+        btns[2].classList.add('red', 'awfsffff');
+    }
+
+    btns[1].classList.toggle('red');
+});
+
+btns[0].className;                  //old code
+
+btnsParrent.addEventListener('click', (event) => {
+    if (event.target && event.target.tagName === 'BUTTON') {
+        event.target && event.target.mathces === 'button.red'
+        console.log(event.target);
+    }
+});
+
+const btn = document.createElement('button');
+btn.classList.add('red');
+btnsParrent.append(btn);
