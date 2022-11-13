@@ -1315,7 +1315,7 @@ console.log(sortStudentsByGroups(students));
 
 // lection 50 classList и делигирование событий
 
-/* */
+/*
 
 const btns          = document.querySelectorAll('button'),
       btnsParrent   = document.querySelector('.button-wrapper');
@@ -1352,3 +1352,10 @@ btnsParrent.addEventListener('click', (event) => {
 const btn = document.createElement('button');
 btn.classList.add('red');
 btnsParrent.append(btn);
+
+*/
+
+// lection 50 classList и делигирование событий
+
+/* */
+
