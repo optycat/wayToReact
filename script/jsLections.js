@@ -1355,7 +1355,60 @@ btnsParrent.append(btn);
 
 */
 
-// lection 50 classList и делигирование событий
+// lection 65 setTimeout setInterval
+
+/* 
+
+const btn = document.querySelector('.btn');
+let someTimeout,
+    i = 0;
+
+btn.addEventListener('click', () => {
+    someTimeout = setInterval(logger, 2000);
+});
+
+const timerId = setTimeout( (text) => {
+    console.log(text);
+}, 2000, 'hello');
+
+setTimeout(logger, 2000);
+
+clearInterval(timerId);
+
+function logger () {
+    if (i === 3) {
+        clearInterval(someTimeout);
+    }
+    console.log('text');
+    i++;
+}
+
+let id = setTimeout (function log () {
+    console.log('hell');
+    id = setTimeout(log, 500);
+}, 500);
+
+function myAnimation () {
+    const element = document.querySelector('.box');
+    let pos = 0;
+
+    const id = setInterval(frame, 10);
+
+    function frame() {
+        if (pos === 300) {
+            clearInterval(id);
+        } else {
+            pos++;
+            element.style.top = pos + 'px';
+            element.style.left = pos + 'px';
+        }
+    }
+}
+
+btn.addEventListener('click', myAnimation);
+
+*/
+
+// lection 67 
 
 /* */
-
