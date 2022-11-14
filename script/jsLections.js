@@ -1409,6 +1409,41 @@ btn.addEventListener('click', myAnimation);
 
 */
 
-// lection 67 
+// lection 68 работа с датами
 
-/* */
+/* 
+
+const now = new Date('2022-11-14');
+
+new Date.parse('2022-11-14');
+console.log(now);
+
+const yes = new Date(2022, 11, 14, 10);
+console.log(yes);
+
+const ms = new Date(-9999999999999);
+console.log(ms);
+
+console.log(now.getFullYear());
+console.log(now.getFullMonth());
+console.log(now.getDate());
+console.log(now.getHours());
+console.log(now.getUTCHours());
+console.log(now.getDay());      //sunday === 0
+console.log(now.getTimezoneOffset());
+console.log(now.getTime());
+
+console.log(now.setHours(40));
+console.log(now);
+
+let start = new Date();
+
+for (let i = 0; i < 100000; i++) {
+    let some = i ** 3;
+}
+
+let end = new Date();
+
+console.log(end - start);
+
+*/
