@@ -1484,4 +1484,40 @@ window.scrollTo(x, y); //от верха страницы
 
 */
 
+// lection 75 функции-констукторы
 
+/* 
+
+const num = new Number(3);
+console.log(num);
+
+const num1 = new Function(3);
+console.log(num1);
+
+function User(name, id) {
+    this.name = name;
+    this.id = id;
+    this.human = true;
+    this.hello = () => {
+        console.log(`Hello, ${this.name}!`);
+    };
+}
+
+User.prototype.exit = function() {
+    console.log(`User ${this.name} is gone`);
+};
+
+const ivan = new User('Ivan', 51);
+const alex = new User('Alex', 54);
+
+alex.hello();
+alex.exit();
+
+console.log(ivan);
+console.log(alex);
+
+*/
+
+// lection 75 функции-констукторы
+
+/* */
