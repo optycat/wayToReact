@@ -98,8 +98,39 @@ window.addEventListener('DOMContentLoaded', () => {
 
     setClock('.timer', deadline);
 
-    // smht _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+    // Modal _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
+    const modalTriggerBtns = document.querySelectorAll('[data-modal]'),
+          modalForm = document.querySelector('.modal'),
+          modalCloseForm = modalForm.querySelector('[data-close]');
+
+    const closeModal = () => {
+        modalForm.classList.toggle('show');
+        document.body.style.overflow = '';
+    };
     
+
+
+    modalTriggerBtns.forEach( (item) => {
+        item.addEventListener('click', () => {
+            modalForm.classList.toggle('show');
+            document.body.style.overflow = 'hidden';
+        });
+    });
+
+    modalCloseForm.addEventListener('click', closeModal);
+
+    modalForm.addEventListener('click', (e) => {
+        if (e.target === modalForm) {
+            closeModal();
+        }
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.code === 'Escape' && modalForm.classList.contains('show')) {
+            closeModal();
+        }
+    });
+
 
 });
