@@ -1448,3 +1448,38 @@ console.log(end - start);
 
 */
 
+// lection 71 параметры документа, окна и работа с ними
+
+/*
+
+const box = document.querySelector('.box'),
+      btn = document.querySelector('button');
+
+const width = box.clientWidth;
+const height = box.clientHeight;
+
+const width1 = box.offsetWidth;
+const height1 = box.offsetHeight;
+
+const width2 = box.scrollWidth;
+const height2 = box.scrollHeight;
+
+btn.addEventListener('click', () => {
+    box.style.height = box.scrollHeight + 'px';
+    console.log(box.scrollTop);
+});
+
+console.log(box.getBoundingClientRect().top);
+
+const style = window.getComputedStyle(box);
+
+console.log(style.display);
+
+console.log(document.documentElement.clientWidth);
+console.log(document.documentElement.scrollTop = 0);
+
+window.scrollBy(x, y); //от текущей позиции скролит на y вниз и на х вправо
+
+window.scrollTo(x, y); //от верха страницы
+
+*/
