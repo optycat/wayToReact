@@ -1518,6 +1518,108 @@ console.log(alex);
 
 */
 
-// lection 75 функции-констукторы
+// lection 76 контекст вызова this
 
 /* */
+
+
+// 1 //////////////////////////////////////////////////////////////
+
+function showThis(a, b) {
+    console.log(this);                  //undefined
+    function sum() {
+        console.log(this);              //undefined
+        return a + b;
+    }
+
+    console.log(sum());
+}
+showThis(4, 5);
+
+
+// 2 //////////////////////////////////////////////////////////////
+
+const obj = {
+    a: 20,
+    b: 15,
+    sum: function() {
+        function shout() {
+            console.log(this);          //undefined
+        }
+        shout();
+        console.log(this);              //object obj
+    }
+};
+
+obj.sum();
+
+
+// 3 //////////////////////////////////////////////////////////////
+
+function User(name, id) {
+    this.name = name;                                   //ivan
+    this.id = id;                                       //ivan
+    this.human = true;                                  //ivan
+    this.hello = () => {                                //ivan
+        console.log(`Hello, ${this.name}!`);            //ivan
+    };
+}
+
+const ivan = new User('Ivan', 23);
+
+// 4 //////////////////////////////////////////////////////////////
+function sayName(sername) {
+    console.log(this);                                  //user
+    console.log(this.name + sername);                   //user
+}
+
+const user = {
+    name: 'Jhon'
+};
+
+sayName.call(user, 'Smith');
+sayName.apply(user, ['Sarah']);
+
+function count(num) {
+    return this * num;                                  //2
+}
+
+const double = count.bind(2);
+console.log(double(5));
+
+// 1) обычная ф-ция - this = window, а при use strict this = undefined
+// 2) контекст у методов объекта - сам объект
+// 3) this в конструкторах и классах - это екземпляр объекта
+// 4) this привязывается вручную
+// () => {} не имеет контекста вызова, а берет его у родителя
+
+const btn = document.querySelector('button');
+
+btn.addEventListener('click', function() {
+    console.log(this);
+    this.style.backgroundColor = 'red';
+});
+
+const some = {
+    num: 5,
+    sayNum: function() {
+        const say = () => {
+            console.log(this);
+        };
+
+        say();
+    }
+};
+
+some.sayNum();
+
+const calc = a => a * 2;
+
+console.log(calc(4));
+
+const btn1 = document.querySelector('button');
+
+btn1.addEventListener('click', (e) => {
+    console.log(this);
+    e.target.style.backgroundColor = 'red';
+});
