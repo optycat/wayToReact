@@ -213,4 +213,6 @@ window.addEventListener('DOMContentLoaded', () => {
         13, 
         '[data-goods]').render();
 
+    console.log('aFSDZXGBHJUKGIHLJUGHGF');
+
 });
