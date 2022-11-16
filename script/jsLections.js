@@ -1520,7 +1520,7 @@ console.log(alex);
 
 // lection 76 контекст вызова this
 
-/* */
+/* 
 
 
 // 1 //////////////////////////////////////////////////////////////
@@ -1623,3 +1623,46 @@ btn1.addEventListener('click', (e) => {
     console.log(this);
     e.target.style.backgroundColor = 'red';
 });
+
+*/
+
+// lection 77 классы
+
+/* 
+
+class Rectangle {
+    constructor(height, width) {
+        this.height = height;
+        this.width = width;
+    }
+
+    calcArea() {
+        return this.width * this.height;
+    }
+}
+
+class ColoredRectangleWithText extends Rectangle{
+    constructor(width, height, text, bgColor) {
+        super(width, height);
+        this.text = text;
+        this.bgColor = bgColor;
+    }
+
+    showMyProps() {
+        console.log(`Text: ${this.text}, color: ${this.bgColor}`);
+    }
+}
+
+const div = new ColoredRectangleWithText(25, 10, 'hi, beach, sunset', 'red');
+div.showMyProps();
+console.log(div.calcArea());
+
+
+const squere = new Rectangle(10, 10);
+
+console.log(squere.calcArea());
+
+*/
+
+
+//
