@@ -1708,4 +1708,7 @@ console.log(persone, clone);
 
 */
 
+// lection 82 AJAX и общение с сервером
+
+/* */
 
