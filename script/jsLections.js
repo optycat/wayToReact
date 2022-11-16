@@ -1665,4 +1665,22 @@ console.log(squere.calcArea());
 */
 
 
-//
+// lection 80 Rest оператор и параметры по умолчанию
+
+/* 
+
+const log = function(a, b, ...rest) {
+
+    console.log(a, b, rest);
+};
+
+log('a', 'b', 'fzs', 'segvd', 'sfe', 4);
+
+
+const calcOrDouble = function(number, basis = 2) {
+    console.log(number * basis);
+};
+
+calcOrDouble(3);
+
+*/
