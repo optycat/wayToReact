@@ -152,11 +152,12 @@ window.addEventListener('DOMContentLoaded', () => {
     // Goods _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
     class GoodsCard {
-        constructor(imgLink, alt, title, description, price, parentSelector) {
+        constructor(imgLink, alt, title, description, price, parentSelector, ...classes) {
             this.parent = document.querySelector(parentSelector);
             this.imgLink = imgLink;
             this.alt = alt;
             this.title = title;
+            this.classes = classes;
             this.description = description;
             this.price = price;
             this.transfer = 29;
@@ -165,8 +166,14 @@ window.addEventListener('DOMContentLoaded', () => {
 
         render() {
             const element = document.createElement('div');
+
+            if (this.classes.length === 0) {
+                this.element = 'menu__item';
+                element.classList.add('menu__item');
+            } else {
+                this.classes.forEach( className => element.classList.add(className));
+            }
             element.innerHTML = `
-            <div class="menu__item">
                 <img src="${this.imgLink}" alt="${this.alt}">
                 <h3 class="menu__item-subtitle">${this.title}</h3>
                 <div class="menu__item-descr">${this.description}</div>
@@ -175,7 +182,6 @@ window.addEventListener('DOMContentLoaded', () => {
                     <div class="menu__item-cost">Цена:</div>
                     <div class="menu__item-total"><span>${this.price}</span> грн/день</div>
                 </div>
-            </div>
             `;
             this.parent.append(element);
         }

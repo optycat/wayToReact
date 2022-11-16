@@ -1664,17 +1664,16 @@ console.log(squere.calcArea());
 
 */
 
-
 // lection 80 Rest оператор и параметры по умолчанию
 
 /* 
 
 const log = function(a, b, ...rest) {
 
-    console.log(a, b, rest);
+    console.log(a, b, ...rest);
 };
 
-log('a', 'b', 'fzs', 'segvd', 'sfe', 4);
+log('a', 'b', 'fzs', 'segvd', 'sfe');
 
 
 const calcOrDouble = function(number, basis = 2) {
@@ -1684,3 +1683,29 @@ const calcOrDouble = function(number, basis = 2) {
 calcOrDouble(3);
 
 */
+
+// lection 82 JSON, глубокое клонирование объектов
+
+/*
+
+const persone = {
+    name: 'Alex',
+    phone: '+8451324512',
+    parents: {
+        mom: 'Olha',
+        dad: 'Sam'
+    }
+};
+
+console.log(JSON.stringify(persone));
+
+console.log(JSON.parse(JSON.stringify(persone)));
+
+const clone = JSON.parse(JSON.stringify(persone));
+
+clone.parents.mom = 'Nina';
+console.log(persone, clone);
+
+*/
+
+
