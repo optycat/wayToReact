@@ -102,7 +102,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const modalTriggerBtns = document.querySelectorAll('[data-modal]'),
           modalForm = document.querySelector('.modal'),
-          modalCloseForm = modalForm.querySelector('[data-close]'),
           d = document.documentElement;
 
     const closeModal = () => {
@@ -115,19 +114,15 @@ window.addEventListener('DOMContentLoaded', () => {
             clearInterval(timeoutFormId);
     };
 
-    const timeoutFormId = setTimeout(openModal, 10000);
 
-
-
+    const timeoutFormId = setTimeout(openModal, 50000);
 
     modalTriggerBtns.forEach( (item) => {
         item.addEventListener('click', openModal);
     });
 
-    modalCloseForm.addEventListener('click', closeModal);
-
     modalForm.addEventListener('click', (e) => {
-        if (e.target === modalForm) {
+        if (e.target === modalForm || e.target.getAttribute('data-close') == '') {
             closeModal();
         }
     });
@@ -137,7 +132,6 @@ window.addEventListener('DOMContentLoaded', () => {
             closeModal();
         }
     });
-
 
 
     function showModalByScroll() {
@@ -159,7 +153,7 @@ window.addEventListener('DOMContentLoaded', () => {
             this.title = title;
             this.classes = classes;
             this.description = description;
-            this.price = price;
+            this.price = price; 
             this.transfer = 29;
             this.changeCurrency();
         }
@@ -213,6 +207,88 @@ window.addEventListener('DOMContentLoaded', () => {
         13, 
         '[data-goods]').render();
 
-    console.log('aFSDZXGBHJUKGIHLJUGHGF');
+    // Forms _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
+    const forms = document.querySelectorAll('form');
+
+    const message = {
+        loading: 'img/form/spinner.svg',
+        sucsess: 'Thnk! We contact with u soon.',
+        failure: 'Smth goes wrong'
+    };
+
+    forms.forEach( i => postData(i) );
+
+    function postData(form) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const statusMassage = document.createElement('img');
+            statusMassage.src = message.loading;
+            statusMassage.style.cssText = `
+                display: block;
+                margin: 0 auto;
+            `;
+            //form.append(statusMassage);
+            form.insertAjacentElement('afterend', statusMassage);
+
+            const req = new XMLHttpRequest();
+            req.open('POST', 'server.php');
+
+            //не надо ставить заголовок при связке XMLHttpRequest и form-data
+            //req.setRequestHeader('Content-type', 'myltipart/form-data');
+            //req.send(formData);
+            req.setRequestHeader('Content-type', 'application/json');
+            
+            const formData = new FormData(form);
+
+            const object = {};
+            formData.forEach( (value, key) => {
+                object[key] = value;
+            });
+
+            const json = JSON.stringify(object);
+
+            req.send(json);
+
+            req.addEventListener('load', () => {
+                if (req.status === 200) {
+                    console.log(req.response);
+                    showTHNKModal(message.sucsess);
+                    form.reset();
+                    statusMassage.remove();
+                } else {
+                    showTHNKModal(message.failure);
+                }
+            });
+        });
+    }
+
+    function showTHNKModal ( message ) {
+        const previosModal = document.querySelector('.modal__dialog');
+
+        previosModal.classList.add('hide');
+
+        openModal();
+
+        const thnkModal = document.createElement('div');
+        thnkModal.classList.add('modal__dialog');
+        thnkModal.innerHTML = `
+            <div class="modal__content">
+                <div data-close class="modal__close">&times;</div>
+                <div class="modal__title">${message}</div>
+            </div>
+        `;
+        document.querySelector('.modal').append(thnkModal);
+        previosModal.parentElement.classList.add('show');
+
+        setTimeout( () => {
+            thnkModal.remove();
+            previosModal.classList.remove('hide');
+            closeModal();
+        }, 2000);
+    }
+
+
+    
 });
