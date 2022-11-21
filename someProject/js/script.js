@@ -2,17 +2,17 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // Tabs _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-    const tabs       = document.querySelectorAll('.tabheader__item'),
-          tabContent = document.querySelectorAll('.tabcontent'),
-          tabsParent = document.querySelector('.tabheader__items');
+    const tabs = document.querySelectorAll('.tabheader__item'),
+        tabContent = document.querySelectorAll('.tabcontent'),
+        tabsParent = document.querySelector('.tabheader__items');
 
     function hideTabContent() {
-        tabContent.forEach( item => {
+        tabContent.forEach(item => {
             item.classList.add('hide');
             item.classList.remove('show', 'fade');
         });
 
-        tabs.forEach( item => {
+        tabs.forEach(item => {
             item.classList.remove('tabheader__item_active');
         });
     }
@@ -30,7 +30,7 @@ window.addEventListener('DOMContentLoaded', () => {
         const target = e.target;
 
         if (target && target.classList.contains('tabheader__item')) {
-            tabs.forEach( (item, index) => {
+            tabs.forEach((item, index) => {
                 if (target === item) {
                     hideTabContent();
                     showTabContent(index);
@@ -38,55 +38,55 @@ window.addEventListener('DOMContentLoaded', () => {
             });
         }
     });
-    
+
     // Timer _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
     const deadline = '2023-01-20';
 
     const getTimeRemaining = (endTime) => {
         let days, hours, minutes, seconds;
-        const t       = Date.parse(endTime) - Date.parse(new Date());
+        const t = Date.parse(endTime) - Date.parse(new Date());
 
-        if (t <= 0){
+        if (t <= 0) {
             days = 0;
             hours = 0;
             minutes = 0;
             seconds = 0;
         } else {
-            days    = Math.floor(t / (1000 * 60 * 60 * 24)),
-            hours   = Math.floor((t / (1000 * 60 * 60)) % 24),
-            minutes = Math.floor((t / 1000 / 60) % 60),
-            seconds = Math.floor((t / 1000) % 60);
+            days = Math.floor(t / (1000 * 60 * 60 * 24)),
+                hours = Math.floor((t / (1000 * 60 * 60)) % 24),
+                minutes = Math.floor((t / 1000 / 60) % 60),
+                seconds = Math.floor((t / 1000) % 60);
         }
 
         return {
-            'total':   t,
-            'days':    days,
-            'hours':   hours,
+            'total': t,
+            'days': days,
+            'hours': hours,
             'minutes': minutes,
             'seconds': seconds
         };
     };
 
     const getZero = (num) => {
-        return num < 10 ? `0${num}`: num;
+        return num < 10 ? `0${num}` : num;
     };
 
     const setClock = (selector, endTime) => {
-        const timer     = document.querySelector(selector),
-              days      = timer.querySelector('#days'),
-              hours     = timer.querySelector('#hours'),
-              minutes   = timer.querySelector('#minutes'),
-              seconds   = timer.querySelector('#seconds'),
-              timeInterval = setInterval(updateClock, 1000);
+        const timer = document.querySelector(selector),
+            days = timer.querySelector('#days'),
+            hours = timer.querySelector('#hours'),
+            minutes = timer.querySelector('#minutes'),
+            seconds = timer.querySelector('#seconds'),
+            timeInterval = setInterval(updateClock, 1000);
 
         updateClock();
 
         function updateClock() {
             const t = getTimeRemaining(endTime);
 
-            days.innerHTML    = getZero(t.days);
-            hours.innerHTML   = getZero(t.hours);
+            days.innerHTML = getZero(t.days);
+            hours.innerHTML = getZero(t.hours);
             minutes.innerHTML = getZero(t.minutes);
             seconds.innerHTML = getZero(t.seconds);
 
@@ -101,23 +101,23 @@ window.addEventListener('DOMContentLoaded', () => {
     // Modal _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
     const modalTriggerBtns = document.querySelectorAll('[data-modal]'),
-          modalForm = document.querySelector('.modal'),
-          d = document.documentElement;
+        modalForm = document.querySelector('.modal'),
+        d = document.documentElement;
 
     const closeModal = () => {
-            modalForm.classList.toggle('show');
-            document.body.style.overflow = '';
+        modalForm.classList.toggle('show');
+        document.body.style.overflow = '';
     },
-          openModal = () => {
+        openModal = () => {
             modalForm.classList.toggle('show');
             document.body.style.overflow = 'hidden';
             clearInterval(timeoutFormId);
-    };
+        };
 
 
     const timeoutFormId = setTimeout(openModal, 50000);
 
-    modalTriggerBtns.forEach( (item) => {
+    modalTriggerBtns.forEach((item) => {
         item.addEventListener('click', openModal);
     });
 
@@ -142,7 +142,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     window.addEventListener('scroll', showModalByScroll);
-    
+
     // Goods _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
     class GoodsCard {
@@ -153,7 +153,7 @@ window.addEventListener('DOMContentLoaded', () => {
             this.title = title;
             this.classes = classes;
             this.description = description;
-            this.price = price; 
+            this.price = price;
             this.transfer = 29;
             this.changeCurrency();
         }
@@ -165,7 +165,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 this.element = 'menu__item';
                 element.classList.add('menu__item');
             } else {
-                this.classes.forEach( className => element.classList.add(className));
+                this.classes.forEach(className => element.classList.add(className));
             }
             element.innerHTML = `
                 <img src="${this.imgLink}" alt="${this.alt}">
@@ -186,25 +186,25 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     new GoodsCard(
-        'img/tabs/vegy.jpg', 
-        'ALT', 
-        'Меню "Фитнес"', 
-        'Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!', 
-        9, 
+        'img/tabs/vegy.jpg',
+        'ALT',
+        'Меню "Фитнес"',
+        'Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!',
+        9,
         '[data-goods]').render();
     new GoodsCard(
-        'img/tabs/elite.jpg', 
-        'ALT', 
-        'Меню "Премиум"', 
-        'В меню “Премиум” мы используем не только красивый дизайн упаковки, но и качественное исполнение блюд. Красная рыба, морепродукты, фрукты - ресторанное меню без похода в ресторан!', 
-        15, 
+        'img/tabs/elite.jpg',
+        'ALT',
+        'Меню "Премиум"',
+        'В меню “Премиум” мы используем не только красивый дизайн упаковки, но и качественное исполнение блюд. Красная рыба, морепродукты, фрукты - ресторанное меню без похода в ресторан!',
+        15,
         '[data-goods]').render();
     new GoodsCard(
-        'img/tabs/post.jpg', 
-        'ALT', 
-        'Меню "Постное"', 
-        'Меню “Постное” - это тщательный подбор ингредиентов: полное отсутствие продуктов животного происхождения, молоко из миндаля, овса, кокоса или гречки, правильное количество белков за счет тофу и импортных вегетарианских стейков.', 
-        13, 
+        'img/tabs/post.jpg',
+        'ALT',
+        'Меню "Постное"',
+        'Меню “Постное” - это тщательный подбор ингредиентов: полное отсутствие продуктов животного происхождения, молоко из миндаля, овса, кокоса или гречки, правильное количество белков за счет тофу и импортных вегетарианских стейков.',
+        13,
         '[data-goods]').render();
 
     // Forms _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
@@ -217,7 +217,7 @@ window.addEventListener('DOMContentLoaded', () => {
         failure: 'Smth goes wrong'
     };
 
-    forms.forEach( i => postData(i) );
+    forms.forEach(i => postData(i));
 
     function postData(form) {
         form.addEventListener('submit', (e) => {
@@ -229,17 +229,8 @@ window.addEventListener('DOMContentLoaded', () => {
                 display: block;
                 margin: 0 auto;
             `;
-            //form.append(statusMassage);
-            form.insertAjacentElement('afterend', statusMassage);
+            form.parentElement.appendChild(statusMassage);
 
-            const req = new XMLHttpRequest();
-            req.open('POST', 'server.php');
-
-            //не надо ставить заголовок при связке XMLHttpRequest и form-data
-            //req.setRequestHeader('Content-type', 'myltipart/form-data');
-            //req.send(formData);
-            req.setRequestHeader('Content-type', 'application/json');
-            
             const formData = new FormData(form);
 
             const object = {};
@@ -247,24 +238,23 @@ window.addEventListener('DOMContentLoaded', () => {
                 object[key] = value;
             });
 
-            const json = JSON.stringify(object);
-
-            req.send(json);
-
-            req.addEventListener('load', () => {
-                if (req.status === 200) {
-                    console.log(req.response);
-                    showTHNKModal(message.sucsess);
-                    form.reset();
-                    statusMassage.remove();
-                } else {
-                    showTHNKModal(message.failure);
-                }
-            });
+            fetch('server.php', {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify(object)
+            }).then((data) => data.text())
+              .then(data => {
+                console.log(data);
+                showTHNKModal(message.sucsess);
+                statusMassage.remove();
+            }).catch(() => showTHNKModal(message.failure))
+              .finally(() => form.reset());
         });
     }
 
-    function showTHNKModal ( message ) {
+    function showTHNKModal(message) {
         const previosModal = document.querySelector('.modal__dialog');
 
         previosModal.classList.add('hide');
@@ -282,13 +272,11 @@ window.addEventListener('DOMContentLoaded', () => {
         document.querySelector('.modal').append(thnkModal);
         previosModal.parentElement.classList.add('show');
 
-        setTimeout( () => {
+        setTimeout(() => {
             thnkModal.remove();
             previosModal.classList.remove('hide');
             closeModal();
         }, 2000);
     }
 
-
-    
 });
