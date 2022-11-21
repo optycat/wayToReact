@@ -1708,7 +1708,64 @@ console.log(persone, clone);
 
 */
 
-// lection 82 AJAX и общение с сервером
+// lection 86 Promise ES6
+
+/* 
+
+console.log('data request...');
+
+const req = new Promise(function(resolve, reject) {
+    setTimeout(() => {
+        console.log('prepare...');
+    
+        const good = {
+            name: 'TV',
+            price: 2000
+        };
+    
+        resolve(good);
+    }, 2000);
+});
+
+req.then((data) => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            data.status = 'ordered';
+            console.log('changing...');
+            resolve(data);
+            //reject();
+        }, 2000);
+    });
+}).then( data => {
+    data.modify = true;
+    return data;
+}).then(data => {
+    console.log(data)
+}).catch(() => {
+    console.error('Error!');
+}).finally(() => {
+    console.log('Finally!');
+});
+
+const test = time => {
+    return new Promise(resolve => {
+        setTimeout(() => resolve(), time);
+    });
+};
+
+//test(1000).then(() => console.log('1000ms'));
+//test(2000).then(() => console.log('2000ms'));
+
+//Promise.all([test(1000), test(2000)]).then(() => {
+//    console.log('All');
+//});
+
+Promise.race([test(1000), test(2000)]).then(() => {
+    console.log('All');
+});
+
+*/
+
+// lection 87 Fetch API
 
 /* */
-
