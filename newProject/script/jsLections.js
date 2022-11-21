@@ -1786,3 +1786,67 @@ Promise.race([test(1000), test(2000)]).then(() => {
     .then(json => console.log(json));
 
 */
+
+// lection 88 Методы перебора массивов
+
+/* 
+
+// filter
+
+const names = ['fffff', 'huj', 'jiomklfdgfx', 'f', 'oin'];
+
+//const shortNames = names.filter((name) => {
+//    return name.length < 5;
+//});
+
+const shortNames = names.filter((name) => name.length < 5);
+
+console.log(shortNames);
+
+// map
+
+const answers = ['sdrsgtf', 'MOMmvodsl;,df', 'ADFESGRH', 'KbiunNUNIUuni'];
+
+const result = answers.map(item => item.toLowerCase());
+
+console.log(result);
+
+// every/some
+
+const someArr = [4, 'MOMmvodsl;,df', 'ADFESGRH', 'KbiunNUNIUuni'];
+
+console.log(someArr.some(item => typeof(item) === 'number'));
+console.log(someArr.every(item => typeof(item) === 'number'));
+
+// reduse
+
+const ffff = [4, 5, 2, 1, 6, 3];
+const res = ffff.reduce((sum, current) => sum + current);
+console.log(res);
+
+const fruits = ['sdrsgtf', 'MOMmvodsl;,df', 'ADFESGRH', 'KbiunNUNIUuni'];
+const r = fruits.reduce((sum, current) => `${sum}, ${current}`);
+console.log(r);
+
+const ffff1 = [4, 5, 2, 1, 6, 3];
+const res1 = ffff1.reduce((sum, current) => sum + current, 3);
+console.log(res1);
+
+
+const obj = {
+    ivan: 'persone',
+    ann: 'persone',
+    dog: 'animal',
+    cat: 'animal'
+};
+
+const newArr = Object.entries(obj)
+                .filter(item => item[1] === 'persone')
+                .map(item => item[0]);
+
+console.log(newArr);
+
+*/
+
+// lection 88 Методы перебора массивов
+/* */
