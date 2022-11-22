@@ -276,7 +276,9 @@ window.addEventListener('DOMContentLoaded', () => {
             thnkModal.remove();
             previosModal.classList.remove('hide');
             closeModal();
-        }, 2000);
+        }, 4000);
     }
-
+    fetch('http://localhost:3000/menu')
+        .then(data => data.json())
+        .then(res => console.log(res));
 });
