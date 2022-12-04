@@ -1848,7 +1848,87 @@ console.log(newArr);
 
 */
 
-// lection 88 Методы перебора массивов
+// lection 95 Local storage
+
+/* 
+
+localStorage.setItem('number', 5);
+
+let field = localStorage.getItem('number');
+
+localStorage.removeItem('number');
+
+localStorage.clear();
+
+const checkbox = document.querySelector('#checkbox'),
+      form = document.querySelector('form'),
+      changeColor = document.querySelector('#color');
+
+if (localStorage.getItem('isChecked')) {
+    checkbox.checked = true;
+}
+if (localStorage.getItem('bg')) {
+    form.style.backgroundColor = '#fff';
+}
+
+checkbox.addEventListener('change', () => {
+    localStorage.setItem('isChecked', true);
+});
+
+changeColor.addEventListener('click', () => {
+    if (localStorage.getItem('bg')) {
+        localStorage.removeItem('bg');
+        form.style.backgroundColor = '#fff';
+    } else {
+        localStorage.setItem('bg', 'changed');
+        form.style.backgroundColor = '#333';
+    }
+});
+
+const person = {
+    name: 'Alex',
+    age: 25
+};
+
+const serializedPersone = JSON.stringify(person);
+
+localStorage.setItem('alex', serializedPersone);
+
+console.log(localStorage.getItem('alex'));
+
+*/
+
+// lection 96 Регулярные выражения
+
 /* */
 
+// new RegExp('pattern', 'Flags');
 
+// /pattern/f
+
+const ans = 'faompivNrjdlfkopag4865123inrodjflklafwogeis;tbFAGY4512SRDHUJI1NKF;DGRZIJFLESHZYGS4RHRJIKPSOTL[DZ78965BFLNX;JZSKspiehrnjd4fgkmra75wkjgsusdmkaw;efkrjdfzm';
+
+const reg = /\d/ig;
+
+// i  - pattern not depends of register
+// g  - searches multiple patterns
+// m  - many strings regime
+// .  - all sumbols
+// \d - all numbers
+// \w - all words
+// \s - all spases
+
+console.log(ans.search(reg));
+console.log(ans.match(reg));
+
+console.log(ans.replace(/./g, '*'));
+
+console.log('12-34-56'.replace(/-/g, ':'));
+
+console.log(reg.test(ans));
+
+console.log(ans.match(/\d/g));
+
+const str = 'mefsmzvp R2D2';
+
+console.log(srt.match(/\w\d\w\d/));

@@ -207,7 +207,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 new GoodsCard(img, altimg, title, descr, price, '[data-goods]').render();
             });
         });*/
-
+ 
     // Forms _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
     const forms = document.querySelectorAll('form');
@@ -302,6 +302,7 @@ window.addEventListener('DOMContentLoaded', () => {
         offset     = 0;
 
     const placeZero = (a) => a > 10 ? a : `0${a}`;
+    const laeveJustNumbers = (b, multiplier = -1) => multiplier <= -1 ? +b.replace(/\D/g, '') : +b.replace(/\D/g, '') * multiplier;
 
     totalSlides.textContent = placeZero(slides.length);
     current.textContent = placeZero(slideIndex);
@@ -359,7 +360,7 @@ window.addEventListener('DOMContentLoaded', () => {
         dots.push(dot);
     });
 
-    const repaintSlide = (r = +width.slice(0, width.length - 2) * (slideIndex - 1)) => {
+    const repaintSlide = (r = laeveJustNumbers(width, slideIndex - 1)) => {
         slidesField.style.transform = `translateX(-${r}px)`;
         dots.forEach(dot => dot.style.opacity = 0.5);
         dots[slideIndex - 1].style.opacity = 1;
@@ -367,11 +368,11 @@ window.addEventListener('DOMContentLoaded', () => {
     };
 
     next.addEventListener('click', () => {
-        if (offset == +width.slice(0, width.length - 2) * (slides.length - 1)) {
+        if (offset == laeveJustNumbers(width, slides.length - 1)) {
             offset = 0;
             slideIndex = 1;
         } else {
-            offset += +width.slice(0, width.length - 2);
+            offset += laeveJustNumbers(width);
             slideIndex += 1;
         }
 
@@ -380,10 +381,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
     prev.addEventListener('click', () => {
         if (!offset) {
-            offset = +width.slice(0, width.length - 2) * (slides.length - 1);
+            offset = laeveJustNumbers(width, slides.length - 1);
             slideIndex = slides.length;
         } else {
-            offset -= +width.slice(0, width.length - 2);
+            offset -= laeveJustNumbers(width);
             slideIndex -= 1;
         }
 
