@@ -1917,6 +1917,8 @@ const reg = /\d/ig;
 // \d - all numbers
 // \w - all words
 // \s - all spases
+// \D - not a numbers
+// \W - not a words
 
 console.log(ans.search(reg));
 console.log(ans.match(reg));
@@ -1931,4 +1933,4 @@ console.log(ans.match(/\d/g));
 
 const str = 'mefsmzvp R2D2';
 
-console.log(srt.match(/\w\d\w\d/));
+console.log(str.match(/\w\d\w\d/i));
