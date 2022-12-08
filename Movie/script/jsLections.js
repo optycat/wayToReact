@@ -1960,39 +1960,77 @@ console.log(persone.userAge = 30);
 
 // lection 100 Инкапсуляция
 
-/* */
+/*
 
-const persone = {
-    name: 'Alex',
-    age: 25,
+//  function User(name, age) {
+//      this.name = name;
+//      let userAge = age;
+//  
+//      this.say = function() {
+//          console.log(`name: ${this.name}, age: ${userAge}`);
+//      };
+//  
+//      this.getAge = function(){
+//          return userAge;
+//      };
+//  
+//      this.setAge = function(age){
+//          if(typeof(age) === 'number' && age > 0 && age < 110) {
+//              userAge = age;
+//          } else {
+//              console.log('invalid value');
+//          }
+//      }
+//  }
 
-    get userAge() {
-        return this.age;
-    },
-
-    set userAge(num) {
-        this.age = num;
+class User {
+    constructor(name, age) {
+        this.name = name;
+        this._age = age;
     }
-};
 
-console.log(persone.userAge = 30);
+    #surname = 'adsefrgdbtf';
 
-function user(name, age) {
-    this.name = name;
-    let userAge = age;
+    say = () => {
+        console.log(`name: ${this.name}, age: ${this._age}, ${this.#surname}`);
+    }
 
-    this.say = function() {
-        console.log(`name: ${this.name}, age: ${userAge}`);
-    };
+    get age(){
+        return this._age;
+    }
+
+    set age(age){
+        if(typeof(age) === 'number' && age > 0 && age < 110) {
+            this._age = age;
+        } else {
+            console.log('invalid value');
+        }
+    }
+
+    get surname() {
+        console.log(this.#surname);
+    }
+
+    set surname(surname) {
+        if(surname) {
+            this.#surname = surname;
+        } else {
+            console.log('invalid value');
+        }
+    }
 }
 
-const adam = new user('fsd', 25);
+const adam = new User('fsd', 25);
 
-console.log(adam.name, adam.age);
+console.log(adam.surname = 'afwes', adam.age);
 
-adam.name = 'fsddddddgf';
-adam.userAge = 546123;
+adam.age = 37;
 
 adam.say();
 
-// */
+*/
+
+// lection 101 Модуль и как его использовать
+
+/* */
+
