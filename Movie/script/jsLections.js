@@ -1900,7 +1900,7 @@ console.log(localStorage.getItem('alex'));
 
 // lection 96 Регулярные выражения
 
-/* */
+/*
 
 // new RegExp('pattern', 'Flags');
 
@@ -1934,3 +1934,65 @@ console.log(ans.match(/\d/g));
 const str = 'mefsmzvp R2D2';
 
 console.log(str.match(/\w\d\w\d/i));
+
+*/
+
+// lection 99 Геттеры и сеттеры
+
+/*
+
+const persone = {
+    name: 'Alex',
+    age: 25,
+
+    get userAge() {
+        return this.age;
+    },
+
+    set userAge(num) {
+        this.age = num;
+    }
+};
+
+console.log(persone.userAge = 30);
+
+*/
+
+// lection 100 Инкапсуляция
+
+/* */
+
+const persone = {
+    name: 'Alex',
+    age: 25,
+
+    get userAge() {
+        return this.age;
+    },
+
+    set userAge(num) {
+        this.age = num;
+    }
+};
+
+console.log(persone.userAge = 30);
+
+function user(name, age) {
+    this.name = name;
+    let userAge = age;
+
+    this.say = function() {
+        console.log(`name: ${this.name}, age: ${userAge}`);
+    };
+}
+
+const adam = new user('fsd', 25);
+
+console.log(adam.name, adam.age);
+
+adam.name = 'fsddddddgf';
+adam.userAge = 546123;
+
+adam.say();
+
+// */
