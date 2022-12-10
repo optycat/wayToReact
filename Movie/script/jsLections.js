@@ -2069,3 +2069,64 @@ module.exports = myModule;
 
 */
 
+// lection 106 Ошибки и их отладка
+
+/* 
+
+try {
+    console.log('normal', result);
+} catch(error) {
+    console.log(error.name);
+    console.log(error.massage);
+    console.log(error.stack);
+}
+
+console.log('still normal');
+
+try {
+    document.querySelector('.js_target_button').addEventListener('click', (e) => {
+        console.log(e.target);
+    });
+} catch(error) {}
+
+*/
+
+// lection 107 Создание ошибок и их отладка
+
+/* 
+
+const data = [
+    {
+        id: 'box',
+        tag: 'div'
+    },
+    {
+        id: '',
+        tag: 'nav'
+    },
+    {
+        id: 'circle',
+        tag: 'span'
+    }
+];
+
+try {
+    data.forEach((e, i) => {
+        const block = document.createElement(e.tag);
+    
+        if(!e.id) throw new Error(`Data number ${i} has no id`);
+        
+        block.setAttribute('id', e.id);
+        document.body.append(block);
+    });
+} catch(e) {
+    if (e.name === 'SyntaxError') {
+        console.log(e.massage);
+    } else throw e;
+    //console.log(e.stack);
+}
+
+const err = new Error('waefgrst');
+console.log(err.name, err.message, err.stack);
+
+*/
