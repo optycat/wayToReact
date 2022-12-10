@@ -1,7 +1,9 @@
-function forms() {
-        // Forms _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+import { closeModal, openModal } from './modal';
+import { postData } from '../servises/servises';
 
-        const forms = document.querySelectorAll('form');
+function forms(formSelector, modalSelector, timeoutFormId) {
+        
+        const forms = document.querySelectorAll(formSelector);
 
         const message = {
             loading: 'img/form/spinner.svg',
@@ -10,18 +12,6 @@ function forms() {
         };
     
         forms.forEach(i => bindPostData(i));
-    
-        const postData = async (url, data) => {
-            const result = await fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-type': 'application/json'
-                },
-                body: data
-            });
-    
-            return await result.json();
-        };
     
         function bindPostData(form) {
             form.addEventListener('submit', (e) => {
@@ -54,7 +44,7 @@ function forms() {
     
             previosModal.classList.add('hide');
     
-            openModal();
+            openModal(modalSelector, timeoutFormId);
     
             const thnkModal = document.createElement('div');
             thnkModal.classList.add('modal__dialog');
@@ -70,7 +60,7 @@ function forms() {
             setTimeout(() => {
                 thnkModal.remove();
                 previosModal.classList.remove('hide');
-                closeModal();
+                closeModal(modalSelector);
             }, 4000);
         }
         fetch('http://localhost:3000/menu')
@@ -78,4 +68,4 @@ function forms() {
             .then(res => console.log(res));
     
 }
-module.exports = forms;
+export default forms; 

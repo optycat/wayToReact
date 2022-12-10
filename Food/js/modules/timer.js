@@ -1,7 +1,4 @@
-function timer() {
-    // Timer _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
-
-    const deadline = '2023-01-20';
+function timer(deadline, timerID) {
 
     const getTimeRemaining = (endTime) => {
         let days, hours, minutes, seconds;
@@ -51,12 +48,12 @@ function timer() {
             seconds.innerHTML = getZero(t.seconds);
 
             if (t.total <= 0) {
-                clearInterval(timeInterval);
+                clearInterval(timeInterval); 
             }
         }
     };
 
-    setClock('.timer', deadline);
+    setClock(timerID, deadline);
 
 }
-module.exports = timer;
+export default timer;

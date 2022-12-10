@@ -2055,8 +2055,6 @@ const user = (function(){
 
 user.sayHello();
 
-*/
-
 function myModule() {
     this.hello = function() {
         console.log('hello');
@@ -2068,3 +2066,6 @@ function myModule() {
 }
 
 module.exports = myModule;
+
+*/
+

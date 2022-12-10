@@ -1,6 +1,7 @@
-function goods() {
-    // Goods _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+import { getResouses } from "../servises/servises";
 
+function goods() {
+    
     class GoodsCard {
         constructor(imgLink, alt, title, description, price, parentSelector, ...classes) {
             this.parent = document.querySelector(parentSelector);
@@ -40,17 +41,6 @@ function goods() {
             this.prise = +this.prise * this.transfer;
         }
     }
-
-    
-    const getResouses = async (url) => {
-        const result = await fetch(url);
-
-        if (!result.ok) {
-            throw new Error(`Could not fetch ${url}, status: ${result.status}`);
-        }
-
-        return await result.json();
-    };
     
     getResouses('http://localhost:3000/menu')
         .then(response => {
@@ -60,4 +50,4 @@ function goods() {
         });
 
 }
-module.exports = goods;
+export default goods;
