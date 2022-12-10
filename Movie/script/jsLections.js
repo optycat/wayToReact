@@ -2130,3 +2130,36 @@ const err = new Error('waefgrst');
 console.log(err.name, err.message, err.stack);
 
 */
+
+// lection 109 Библиотеки и фреймворки
+
+/*
+
+Angular:
+- node.js
+- TypeScript
+- Webpack
+- MVC pattern
+- Angular
+
+= good docs and community + big projects
+
+
+React:
+- node.js
+- JSX
+- Babel
+- Webpack
+- React
+
+= flexibility and a lot of js
+
+
+Vue.js:
+- node.js
+- Webpack
+- Vue.js
+
+= fast easy and perspective
+
+*/
