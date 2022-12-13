@@ -2163,3 +2163,111 @@ Vue.js:
 = fast easy and perspective
 
 */
+
+// lection 111 Функции-генераторы
+
+/* 
+
+function* gen() {
+    yield 'S';
+    yield 'c';
+    yield 'r';
+    yield 'i';
+    yield 'p';
+    yield 't';
+}
+
+const str = gen();
+
+console.log(str.next());
+console.log(str.next());
+console.log(str.next().value);
+console.log(str.next());
+console.log(str.next());
+console.log(str.next());
+console.log(str.next());
+
+function* count(n) {
+    for (let i = 0; i < n; i++) {
+        yield i;
+    }
+}
+
+for (let k of count(7)) {
+    console.log(k);
+}
+
+const counter = count(7);
+console.log(counter.next().value);
+console.log(counter.next().value);
+console.log(counter.next().value);
+
+*/
+
+// lection 111 JS-анимации
+
+/*
+
+const btn = document.querySelector('.btn'),
+      elem = document.querySelector('.box');
+
+let pos = 0;
+
+function myAnimation() {
+    pos++;
+    element.style.top = pos + 'px';
+    element.style.left = pos + 'px';
+
+    if (pos < 300) {
+        requestAnimationFrame(myAnimation);
+    }
+}
+
+btn.addEventListener('click', () => requestAnimationFrame(myAnimation));
+
+let id = requestAnimationFrame(myAnimation);
+cancelAnimationFrame(id);
+
+*/
+
+// lection 112 WEB animation API
+
+/*
+
+const btnPhone = document.querySelector('.phone'),
+    btnMacbook = document.querySelector('.macbook'),
+    images = document.querySelectorAll('img');
+
+let phoneAnimation;
+
+btnPhone.addEventListener('click', () => {
+    if (!phoneAnimation) {
+        phoneAnimation = images[0].animate([
+            {
+                transform: 'translateY(0) rotate(0deg)',
+                filter: 'opacity(100%)'
+            },
+            {
+                transform: 'translateY(100px) rotate(180deg)',
+                filter: 'opacity(50%)'
+            },
+            {
+                transform: 'translateY(-100px) rotate(270deg)',
+                filter: 'opacity(75%)'
+            },
+            {
+                transform: 'translateY(0) rotate(360deg)',
+                filter: 'opacity(100%)'
+            }
+        ], {
+            duration: 3000,
+            iterations: Infinity
+        });
+    } else if (phoneAnimation.playState === 'paused') {
+        phoneAnimation.play();
+    } else {
+        phoneAnimation.pause();
+    }
+});
+
+*/
