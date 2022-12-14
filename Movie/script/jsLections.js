@@ -2204,7 +2204,7 @@ console.log(counter.next().value);
 
 */
 
-// lection 111 JS-анимации
+// lection 112 JS-анимации
 
 /*
 
@@ -2230,7 +2230,7 @@ cancelAnimationFrame(id);
 
 */
 
-// lection 112 WEB animation API
+// lection 113 WEB animation API
 
 /*
 
@@ -2271,3 +2271,123 @@ btnPhone.addEventListener('click', () => {
 });
 
 */
+
+//chain #2 ==>> 48
+/*
+const one =   (z) => z * 1,
+      two =   (x) => x * 2,
+      three = (c) => c * 3,
+      four  = (v) => v * 4;
+
+let someArr = [one, two, three, four];
+
+//const compose =
+//  (...fns) =>
+//  (x) =>
+//    fns.reduceRight((res, fn) => fn(res), x);
+
+//const compose = function (...fns) {
+//    return (x) => {
+//        return fns.reduceRight((result, fn) => fn(result), x);
+//    }; 
+//};
+//
+//const test = compose(one, two, three, four);
+//console.log(test(2));
+
+
+const compose = (...arr) => {
+    return function a (x) {
+        let tmp = arr[0];
+        if (arr.length == 1) {
+            return tmp(x);
+        } else {
+            tmp = arr[arr.length - 1](x);
+            arr.pop();
+            return a(tmp);
+        }
+    };
+};
+
+const test = compose(one, two, three, four);
+console.log(test(2));
+//console.log(compose(2, one, two, three, four));
+
+const composeWithArgs = (...arr) => {
+    return function a (...x) {
+        let tmp = arr[0];
+        if (arr.length == 1) {
+            return tmp(...x);
+        } else {
+            tmp = arr[arr.length - 1](...x);
+            arr.pop();
+            return a(tmp);
+        }
+    };
+};
+
+*/
+
+// lection 114 Event loop
+
+/* 
+
+console.log(1);
+
+setTimeout(() => {
+    console.log('timeout');
+}, 4000);
+
+setTimeout(() => {
+    console.log('timeout_4000');
+}, 4000);
+
+console.log(2);
+
+
+setTimeout(() => {
+    console.log(1);
+}, 0);
+
+console.log(2);
+
+Сначала всегда выполняется синхронный код
+Код попадает в Callback Queue, своего рода очередь
+Как только участок кода оказывается на первом месте в Callback Queue, он переходит в Call Stack
+Call Stack, своего рода место, где выполняется код
+
+
+Код попадает в Web Apis, своего рода хранилище, в нем асинхронный код ждет "сигнал выполнения"
+Когда асинхронный код получает "сигнал выполнения", он добавляется в Callback Queue
+Дальше выполнение асинхронного кода не отличается от синхронного
+
+*/
+
+// lection 115 Макро и микро задачи
+
+/* 
+
+setTimeout(() => console.log('timeout'));
+
+Promise.resolve()
+    .then(() => console.log('promise'));
+
+queueMicrotask( () => console.log('micro'));
+
+Promise.resolve()
+    .then(() => console.log('promise_2'));
+
+console.log('code');
+
+// .then .catch .finally и await это микро задачи и у них есть своя очередь
+// микрозадачи выполняются в промежутке между двумя соседними макро задачами
+// сразу после первой макро выполняется вся очередь микро, происходит рендер страницы и выполняется следующая макро
+// queueMicrotask позволяет создавать микротаски
+
+*/
+
+// lection 116 Работа с готовым кодом
+
+/* */
+
+
