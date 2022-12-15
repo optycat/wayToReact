@@ -2388,6 +2388,25 @@ console.log('code');
 
 // lection 116 Работа с готовым кодом
 
-/* */
+/* 
 
 
+// Test
+
+//3 - 1, 4, 11 - 1, 14 - 2, 15 - 3, 16 - 2, 17 - 4, 22 - 4
+
+
+let c = 4;
+function addX(x) {
+  return function(n) {
+     return n + x
+  }
+}
+ 
+const addThree = addX(3);
+ 
+let d = addThree(c);
+let res = addThree(c);
+ 
+console.log(res)
+*/
